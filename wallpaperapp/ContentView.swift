@@ -93,6 +93,8 @@ struct homeview:View{
 }
 
 struct explore:View{
+    @State private var loadimagebefore=URL(string: "https://firebasestorage.googleapis.com/v0/b/wallpaperxcode.appspot.com/o/john-towner-JgOeRuGD_Y4-unsplash.jpg?alt=media&token=e7b0e422-68f5-4ac1-874a-b6ff4c0d26fb&_gl=1*88uty4*_ga*MTgyMjE1NzkxNC4xNjk3OTY2Nzcx*_ga_CW55HF8NVT*MTY5Nzk2Njc3MC4xLjEuMTY5Nzk2Njg1NS42MC4wLjA.")
+    
     
     
     
@@ -182,6 +184,7 @@ struct explore:View{
     struct categories:View{
         
         
+        
         let columns = [
             GridItem(.adaptive(minimum: 200))
         ]
@@ -244,6 +247,7 @@ struct explore:View{
                                             
                                             else if (phase.error != nil){
                                                 Text("No Internet found please turn on internet and restart the app")
+                                                    .foregroundColor(Color.black)
                                                 
                                                 
                                             }
@@ -429,15 +433,25 @@ struct explore:View{
                 ZStack
                 {
                     List{
-                        Text("Developer:")
-                        Text("App Version:")
+                        
+                        HStack{
+                            Text("Developer:")
+                            Spacer()
+                            Text("aaryan")
+                        
+                        }
+                    
+                        HStack {
+                            Text("App Version:")
+                            Spacer()
+                            Text("1.0")
+                        }
                         Text("Contact Us:")
                         
                     }
                     
                     
                 }
-                .padding()
                 
                 
             }
@@ -547,25 +561,41 @@ struct explore:View{
                                 
                                 
                             }
-                            Spacer()
                             
-                            
-                        }
-                        
-                        
-                        .alert(isPresented: $showAlert) {
-                            Alert(
-                                title: Text("Account Created Successfully"),
-                                message: Text("Your account has been created."),
-                                dismissButton: .default(Text("OK")) {
-                                    // Navigate to the login view after tapping "OK" in the alert
-                                    showLoginView = true
+                                .alert(isPresented: $iserrorMessage) {
+                                    Alert(
+                                        title: Text("Invalid Credentials"),
+                                        message: Text(errorMessage ?? ""),
+                                        dismissButton: .default(Text("OK")) {
+                                            // showLoginView = true
+                                        }
+                                    )
                                 }
-                            )
+                            
+                            
+                            
+                            Spacer()
+                                .alert(isPresented: $showAlert) {
+                                    Alert(
+                                        title: Text("Account Created Successfully"),
+                                        message: Text("Your account has been created."),
+                                        dismissButton: .default(Text("OK")) {
+                                            // Navigate to the login view after tapping "OK" in the alert
+                                            showLoginView = true
+                                        }
+                                    )
+                                }
+                                .background(
+                                    NavigationLink("", destination: loginview(), isActive: $showLoginView)
+                                )
+                            
+                            
                         }
-                        .background(
-                            NavigationLink("", destination: loginview(), isActive: $showLoginView)
-                        )
+                       
+                        
+                        
+                       
+                        
                         
                         
                         Button {
@@ -690,8 +720,9 @@ struct explore:View{
                 //explore()
                 //categories().environmentObject(NetworkMonitor())
                 //environmentObject(NetworkMonitor)
-                //signupview()
-                loginview()
+                signupview()
+                //loginview()
+               // settings()
             }
         }
 
