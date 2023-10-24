@@ -8,19 +8,20 @@ import SwiftUI
 import Network
 import FirebaseAuth
 import Firebase
+import UIKit
 struct ContentView: View {
     var body: some View {
         
         NavigationStack {
             ZStack {
-                Color(.white)
+                Color("txt")
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-                    Image(systemName: "newspaper")
+                    Image(systemName: "wallet.pass.fill")
                         .font(.system(size:45))
                         .padding()
                     
-                    Text("Welcome to News App")
+                    Text("Welcome to FreeWalls")
                     
                         .bold()
                         .font(.title)
@@ -35,8 +36,8 @@ struct ContentView: View {
                         .bold()
                     
                     
-                        .background(Color(.blue))
-                        .foregroundColor(Color(.white))
+                        .background(Color("borderclr"))
+                        .foregroundColor(Color("txt"))
                         .cornerRadius(10)
                 }
                     
@@ -447,11 +448,13 @@ struct explore:View{
                             Text("1.0")
                         }
                         Button {
-                            if let emailurl=URL(string: "aaryanprabhakar07@gmail.com"){
+                            if let emailurl=URL(string: "mailto:aaryanprabhakar07@gmail.com"){
                                 UIApplication.shared.open(emailurl)
                                 
                             } }label: {
                             Text("Contact Us")
+                                    .foregroundColor(Color("borderclr"))
+                                
                                 
                         }
 
@@ -730,14 +733,14 @@ struct explore:View{
 
         struct ContentView_Previews: PreviewProvider {
             static var previews: some View {
-               // ContentView()
+                ContentView()
                 // homeview()
                 //explore()
                 //categories().environmentObject(NetworkMonitor())
                 //environmentObject(NetworkMonitor)
                 //signupview()
                 //loginview()
-                settings()
+                //settings()
             }
         }
 
