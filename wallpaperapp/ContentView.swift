@@ -446,16 +446,30 @@ struct explore:View{
                             Spacer()
                             Text("1.0")
                         }
-                        Text("Contact Us:")
+                        Button {
+                            if let emailurl=URL(string: "aaryanprabhakar07@gmail.com"){
+                                UIApplication.shared.open(emailurl)
+                                
+                            } }label: {
+                            Text("Contact Us")
+                                
+                        }
+
+                       
+                           
+                            }
+                        
+                       
                         
                     }
+                    
                     
                     
                 }
                 
                 
             }
-        }
+        
         struct trending:View{
             var body: some View{
                 ZStack{
@@ -485,7 +499,8 @@ struct explore:View{
                             Spacer()
                             //Text("hello world")
                             
-                            Text("Welcome Back!")
+                            Text("Welcome To FreeWalls")
+                                .frame(maxWidth: .infinity,alignment: .leading)
                             
                             
                             //  .frame(maxWidth:.infinity,alignment: .center)
@@ -500,10 +515,10 @@ struct explore:View{
                             
                                 .padding()
                             
-                                .foregroundColor(Color.black)
+                                .foregroundColor(Color("borderclr"))
                             
                             
-                                .border(.black)
+                                .border(Color("borderclr"))
                             
                             
                                 .padding(.bottom,20)
@@ -514,8 +529,8 @@ struct explore:View{
                             
                             TextField("password",text: $password)
                                 .padding()
-                                .foregroundColor(Color.black)
-                                .border(.black)
+                                .foregroundColor(Color("borderclr"))
+                                .border(Color("borderclr"))
                                 .padding(.bottom,20)
                             /*NavigationLink(destination: nointernetview(), isActive: $isaccountcreated){
                              EmptyView()
@@ -554,8 +569,8 @@ struct explore:View{
                                 
                                     .frame(maxWidth:.infinity)
                                 
-                                    .background(Color.black)
-                                    .foregroundColor(Color.white)
+                                    .background(Color("borderclr"))
+                                    .foregroundColor(Color("txt"))
                                     .cornerRadius(5)
                                 
                                 
@@ -604,7 +619,7 @@ struct explore:View{
                             
                             
                         } label: {
-                            Text("Already have an account? ").bold().foregroundColor(Color.black)+Text("Login")
+                            Text("Already have an account? ").bold().foregroundColor(Color("borderclr"))+Text("Login")
                                 .foregroundColor(Color.red).bold()
                         }
                     }
@@ -641,10 +656,10 @@ struct explore:View{
                             
                                 .padding()
                             
-                                .foregroundColor(Color.black)
+                                .foregroundColor(Color("borderclr"))
                             
                             
-                                .border(.black)
+                                .border(Color("borderclr"))
                             
                             
                                 .padding(.bottom,20)
@@ -655,8 +670,8 @@ struct explore:View{
                             
                             TextField("password",text: $password)
                                 .padding()
-                                .foregroundColor(Color.black)
-                                .border(.black)
+                                .foregroundColor(Color("borderclr"))
+                                .border(Color("borderclr"))
                                 .padding(.bottom,20)
                             
                             
@@ -682,8 +697,8 @@ struct explore:View{
                                 
                                     .frame(maxWidth:.infinity)
                                 
-                                    .background(Color.black)
-                                    .foregroundColor(Color.white)
+                                    .background(Color("borderclr"))
+                                    .foregroundColor(Color("txt"))
                                     .cornerRadius(5)
                             }
                             
@@ -720,9 +735,9 @@ struct explore:View{
                 //explore()
                 //categories().environmentObject(NetworkMonitor())
                 //environmentObject(NetworkMonitor)
-                signupview()
+                //signupview()
                 //loginview()
-               // settings()
+                settings()
             }
         }
 
