@@ -41,7 +41,7 @@ class NetworkMonitor: ObservableObject {
 
 var body: some Scene {
     WindowGroup {
-        ContentView()
+        onboard()
     }
 }
 

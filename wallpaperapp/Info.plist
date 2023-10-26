@@ -5,6 +5,12 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>anton.ttf</string>
+		<string>teko.ttf</string>
 	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
 </dict>
 </plist>
