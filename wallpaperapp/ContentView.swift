@@ -500,57 +500,116 @@ struct explore:View{
         }
         
         struct nature:View{
+           // @Environment(\.presentationMode) var presentationmode1
             var body: some View{
                 VStack{
                     Image(systemName: "globe")
+                
+                    
                 }
             }
         }
         
         struct settings:View{
+           @Environment(\.presentationMode) var presentationMode
+            @State private var showalert=false
+          
+           
             
             var body: some View{
-                ZStack
-                {
-                    List{
-                        
-                        HStack{
-                            Text("Developer:")
-                            Spacer()
-                            Text("aaryan")
-                        
-                        }
-                    
-                        HStack {
-                            Text("App Version:")
-                            Spacer()
-                            Text("1.0")
-                        }
-                        Button {
-                            if let emailurl=URL(string: "mailto:aaryanprabhakar07@gmail.com"){
-                                UIApplication.shared.open(emailurl)
+                
+                
+                NavigationStack {
+                    ZStack
+                    {
+                        List{
+                            
+                            HStack{
+                                Text("Developer:")
+                                Spacer()
+                                Text("aaryan")
                                 
-                            } }label: {
-                            Text("Contact Us")
-                                    .foregroundColor(Color("borderclr"))
-                                
-                                
-                        }
-
-                       
-                           
                             }
+                            
+                            HStack {
+                                Text("App Version:")
+                                Spacer()
+                                Text("1.0")
+                            }
+                            Button {
+                                if let emailurl=URL(string: "mailto:aaryanprabhakar07@gmail.com"){
+                                    UIApplication.shared.open(emailurl)
+                                    
+                                } }label: {
+                                    Text("Contact Us")
+                                        .foregroundColor(Color("borderclr"))
+                                    
+                                    
+                                }
+                            Button {
+                                //logoutAndCloseApp()
+                                showalert=true
+                                
+                               
+                               
+                                
+                                
+                            } label: {
+                                Text("Sign Out")
+                                    .foregroundColor(Color("borderclr"))
+                            }
+                            .alert(isPresented:$showalert){
+                                Alert(title: Text("Logout"),
+                                message: Text("Are you sure you want to log out"),
+                                      primaryButton:.default(Text("Logout")){
+                                    logoutAndCloseApp()
+                                },secondaryButton: .cancel()
+                                )
+                                
+                            }
+
+                           
+
+
+                            
+                            
+                           
+                        
+                            
+
+
+                           
+                               
+                                }
+                        
                         
                        
-                        
-                    }
+                            
+                           
+                            
+                }
+                }
+            
                     
                     
                     
                 }
-                
-                
+            func logoutAndCloseApp() {
+                    do {
+                        try Auth.auth().signOut()
+                        // You've successfully logged out, now close the app
+                        presentationMode.wrappedValue.dismiss()
+                    } catch let error as NSError {
+                        print("Error logging out: \(error)")
+                        // Handle any errors that occur during logout
+                    }
+                }
             }
+
+            
+                
+                
+            
         
         struct trending:View{
             var body: some View{
@@ -833,14 +892,14 @@ struct explore:View{
 
         struct ContentView_Previews: PreviewProvider {
             static var previews: some View {
-                onboard()
+               // onboard()
                 // homeview()
                 //explore()
                 //categories().environmentObject(NetworkMonitor())
                 //environmentObject(NetworkMonitor)
                 //signupview()
                 //loginview()
-                //settings()
+                settings()
             }
         }
 
