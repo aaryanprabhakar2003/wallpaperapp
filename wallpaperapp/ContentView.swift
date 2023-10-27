@@ -536,6 +536,8 @@ struct explore:View{
                                 Spacer()
                                 Text("1.0")
                             }
+                            
+                            
                             Button {
                                 if let emailurl=URL(string: "mailto:aaryanprabhakar07@gmail.com"){
                                     UIApplication.shared.open(emailurl)
@@ -546,28 +548,51 @@ struct explore:View{
                                     
                                     
                                 }
+                           
+                        }
+                       
+                        VStack {
+                            Spacer()
                             Button {
                                 //logoutAndCloseApp()
                                 showalert=true
                                 
-                               
-                               
+                                
+                                
                                 
                                 
                             } label: {
-                                Text("Sign Out")
-                                    .foregroundColor(Color("borderclr"))
+                                Text("SignOut")
+                                
+                                    .bold()
+                                    .padding()
+                                    .frame(maxWidth:.infinity)
+                                
+                                    .background(Color("borderclr"))
+                                    .foregroundColor(Color("txt"))
+                                    .cornerRadius(5)
+                               
                             }
                             .alert(isPresented:$showalert){
                                 Alert(title: Text("Logout"),
-                                message: Text("Are you sure you want to log out"),
+                                      message: Text("Are you sure you want to log out"),
                                       primaryButton:.default(Text("Logout")){
                                     logoutAndCloseApp()
                                 },secondaryButton: .cancel()
                                 )
                                 
                             }
-
+                          
+                            
+                            
+                           
+                          
+                        
+                        }
+                        .padding()
+                      
+                    
+                       
                            
 
 
@@ -580,7 +605,7 @@ struct explore:View{
 
                            
                                
-                                }
+                                
                         
                         
                        
@@ -668,7 +693,7 @@ struct explore:View{
                             
                             
                             
-                            TextField("password",text: $password)
+                            SecureField("password",text: $password)
                                 .textCase(.lowercase)
                                 .padding()
                                 .foregroundColor(Color("borderclr"))
@@ -814,9 +839,10 @@ struct explore:View{
                             
                             
                             
-                            TextField("password",text: $password)
+                            //TextField("password",text: $password)
+                                SecureField("password",text: $password)
                                 .padding()
-                                .textCase(.lowercase)
+                               
                                 .foregroundColor(Color("borderclr"))
                                 .border(Color("borderclr"))
                                 .padding(.bottom,20)
@@ -897,9 +923,9 @@ struct explore:View{
                 //explore()
                 //categories().environmentObject(NetworkMonitor())
                 //environmentObject(NetworkMonitor)
-                //signupview()
-                //loginview()
-                settings()
+                signupview()
+               // loginview()
+                //settings()
             }
         }
 
