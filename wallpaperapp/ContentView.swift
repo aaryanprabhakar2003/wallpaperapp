@@ -9,6 +9,7 @@ import Network
 import FirebaseAuth
 import Firebase
 import UIKit
+import Kingfisher
 struct onboard: View {
     //@EnvironmentObject var userSettings:UserSettings
    // @State private var issignup=false;
@@ -85,7 +86,8 @@ struct homeview:View{
                             Image(systemName: "square.grid.2x2")
                             Text("Categories")
                         }
-                    trending()
+                   trending()
+                    
                     
                         .tabItem {
                             Image(systemName: "chart.line.uptrend.xyaxis")
@@ -215,7 +217,7 @@ struct explore:View{
         @EnvironmentObject var networkMonitor: NetworkMonitor
         @State private var isloading=true;
         
-        
+      
         
         
         
@@ -224,9 +226,10 @@ struct explore:View{
         var  imageURLString_cars="https://firebasestorage.googleapis.com/v0/b/wallpaperapp-b34b4.appspot.com/o/tyler-clemmensen-d1Jum1vVLew-unsplash-2.jpg?alt=media&token=5e007daa-440b-434c-9f31-1c29ff1efa33&_gl=1*1rwd914*_ga*MTgyMjE1NzkxNC4xNjk3OTY2Nzcx*_ga_CW55HF8NVT*MTY5ODMxNTY3Ni44LjEuMTY5ODMxNjg5OC41NS4wLjA."
         var  imageURLString_amoled="https://firebasestorage.googleapis.com/v0/b/wallpaperapp-b34b4.appspot.com/o/wade-meng-LgCj9qcrfhI-unsplash.jpg?alt=media&token=34ca970f-4859-4624-acf1-8c0605835c98&_gl=1*1jwmj29*_ga*MTgyMjE1NzkxNC4xNjk3OTY2Nzcx*_ga_CW55HF8NVT*MTY5ODMxNTY3Ni44LjEuMTY5ODMxNzI1OS4yMy4wLjA."
         
+        var  imageURLString_nature="https://firebasestorage.googleapis.com/v0/b/wallpaperapp-b34b4.appspot.com/o/andreas-gucklhorn-mawU2PoJWfU-unsplash.jpg?alt=media&token=e133b060-c768-4c29-8e53-fd23ce44d1f1&_gl=1*188ln6l*_ga*MTgyMjE1NzkxNC4xNjk3OTY2Nzcx*_ga_CW55HF8NVT*MTY5ODQ4OTM3OS4xMC4xLjE2OTg0OTI3NzUuMTQuMC4w."
         var body: some View{
             
-            if(networkMonitor.isConnected){
+            //if(networkMonitor.isConnected){
                 ZStack{
                     VStack(spacing: 0.0){
                         Text("Categories")
@@ -242,7 +245,7 @@ struct explore:View{
                                     Button {
                                         mountainsheet.toggle()
                                     } label: {
-                                        AsyncImage(url: imageURL_mountains,content: { phase in
+                                        /*AsyncImage(url: imageURL_mountains,content: { phase in
                                             if let image=phase.image{
                                                 image
                                                     .resizable()
@@ -286,11 +289,35 @@ struct explore:View{
                                             }
                                         }
                                                    
-                                        )
+                                        )*/
+                                        
+                                        
+                                        KFImage(imageURL_mountains)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(15)
+                                            
+                                            .overlay(
+                                                Text("MOUNTAINS")
+                                                    .font(.custom("teko",size:25))
+                                                    .foregroundColor(Color(.white))
+                                                    .bold()
+                                                
+                                                    .frame(maxWidth:.infinity,alignment: .trailing)
+                                                    .offset(y:90)
+                                                    .padding()
+                                            )
+                                            .sheet(isPresented: $mountainsheet) {
+                                                mountain1()
+                                            }
+                                  
+                                        
                                         
                                         
                                         
                                     }
+                                        
+                                    
                                     
                                 
                                     
@@ -299,7 +326,7 @@ struct explore:View{
                                         carsheet.toggle()
                                         
                                     } label: {
-                                        AsyncImage(url: imageURL_cars,content: { phase in
+                                        /*AsyncImage(url: imageURL_cars,content: { phase in
                                             if let image=phase.image{
                                                 image
                                                     .resizable()
@@ -341,7 +368,26 @@ struct explore:View{
                                             }
                                         }
                                                    
-                                        )
+                                        )*/
+                                        KFImage(imageURL_cars)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(15)
+                                            
+                                            .overlay(
+                                                Text("CARS")
+                                                    .font(.custom("teko",size:25))
+                                                    .foregroundColor(Color(.white))
+                                                    .bold()
+                                                
+                                                    .frame(maxWidth:.infinity,alignment: .trailing)
+                                                    .offset(y:90)
+                                                    .padding()
+                                            )
+                                            .sheet(isPresented: $carsheet) {
+                                                car1()
+                                            }
+                                        
                                         
                                         
                                         
@@ -354,7 +400,7 @@ struct explore:View{
                                     } label:
                                     {
                                         let imageURL_amoled=URL(string:imageURLString_amoled)
-                                        AsyncImage(url: imageURL_amoled,content: { phase in
+                                       /* AsyncImage(url: imageURL_amoled,content: { phase in
                                             if let image=phase.image{
                                                 image
                                                     .resizable()
@@ -396,7 +442,29 @@ struct explore:View{
                                             }
                                         }
                                                    
-                                        )
+                                        )*/
+                                        KFImage(imageURL_amoled)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(15)
+                                            
+                                            .overlay(
+                                                Text("AMOLED")
+                                                    .font(.custom("teko",size:25))
+                                                    .foregroundColor(Color(.white))
+                                                    .bold()
+                                                
+                                                    .frame(maxWidth:.infinity,alignment: .trailing)
+                                                    .offset(y:90)
+                                                    .padding()
+                                            )
+                                        
+                                            .sheet(isPresented: $amoledsheet) {
+                                                amoled()
+                                            }
+                                              
+                                                   
+                                                   
                                         
                                         
                                         
@@ -409,28 +477,76 @@ struct explore:View{
                                     Button {
                                         naturesheet.toggle()
                                         
-                                    } label: {
-                                        Image("nature")
-                                            .resizable()
+                                    } label:
+                                    {
+                                        let imageURL_nature=URL(string:imageURLString_nature)
+                                       /* AsyncImage(url: imageURL_amoled,content: { phase in
+                                            if let image=phase.image{
+                                                image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .cornerRadius(15)
+                                                    .overlay(
+                                                        Text("NATURE")
+                                                            .font(.custom("teko",size:25))
+                                                            .foregroundColor(Color(.white))
+                                                            .bold()
+                                                        
+                                                            .frame(maxWidth:.infinity,alignment: .trailing)
+                                                            .offset(y:75)
+                                                            .padding()
+                                                    )
+                                                
+                                                    .sheet(isPresented: $naturesheet) {
+                                                        nature()
+                                                    }
+                                                
+                                                
+                                                
+                                                
+                                            }
+                                            
+                                            else if (phase.error != nil){
+                                                Text("Error loading Image From Server")
+                                                    .foregroundColor(Color("borderclr"))
+                                                
+                                                
+                                            }
+                                            
+                                            else{
+                                                ProgressView("Loading...")
+                                                
+                                                
+                                                
+                                                
+                                            }
+                                        }
+                                                   
+                                        )*/
+                                        KFImage(imageURL_nature)
+                                        .resizable()
                                             .scaledToFit()
                                             .cornerRadius(15)
-                                        
-                                        
+                                            
                                             .overlay(
-                                                Text("Nature")
+                                                Text("NATURE")
                                                     .font(.custom("teko",size:25))
                                                     .foregroundColor(Color(.white))
-                                                
                                                     .bold()
+                                                
                                                     .frame(maxWidth:.infinity,alignment: .trailing)
-                                                    .offset(y:85)
+                                                    .offset(y:75)
                                                     .padding()
                                             )
+                                            .sheet(isPresented: $naturesheet) {
+                                                nature()
+                                            }
+                                        
+                                        
+                                        
+                                        
                                     }
                                     
-                                    .sheet(isPresented: $naturesheet) {
-                                        nature()
-                                    }
                                     
                                     
                                     
@@ -462,25 +578,76 @@ struct explore:View{
                 .padding()
                 
             }
-            else{
-                nointernetview()
-            }
+            /*else{
+            nointernetview()
+            }*/
             
             
         }
-        }
+      //  }
         
     
 
         
         
-        struct mountain1:View{
-            var body: some View{
-                VStack{
-                    Image(systemName: "globe")
+struct mountain1:View{
+   
+    let columns = [
+        GridItem(.adaptive(minimum: 150))
+    ]
+    let url="https://firebasestorage.googleapis.com/v0/b/wallpaperapp-b34b4.appspot.com/o/andreas-gucklhorn-mawU2PoJWfU-unsplash.jpg?alt=media&token=e133b060-c768-4c29-8e53-fd23ce44d1f1&_gl=1*188ln6l*_ga*MTgyMjE1NzkxNC4xNjk3OTY2Nzcx*_ga_CW55HF8NVT*MTY5ODQ4OTM3OS4xMC4xLjE2OTg0OTI3NzUuMTQuMC4w."
+    let cache = ImageCache.default
+  
+    var body: some View{
+        let url = URL(string: "https://example.com/image.jpg")
+    
+       
+      
+        VStack{
+           // let image = UIImage(named: "default_profile_icon")
+            LazyVGrid(columns:columns,spacing: 10){
+                KFImage(URL(string: "https://firebasestorage.googleapis.com/v0/b/wallpaperapp-b34b4.appspot.com/o/andreas-gucklhorn-mawU2PoJWfU-unsplash.jpg?alt=media&token=e133b060-c768-4c29-8e53-fd23ce44d1f1&_gl=1*188ln6l*_ga*MTgyMjE1NzkxNC4xNjk3OTY2Nzcx*_ga_CW55HF8NVT*MTY5ODQ4OTM3OS4xMC4xLjE2OTg0OTI3NzUuMTQuMC4w."))
+                    .resizable()
+                    .cacheOriginalImage()
+                   
+                
+                    .placeholder {
+                        Image(systemName: "house")
+                    }
+          
+                KFImage(URL(string: "https://akm-img-a-in.tosshub.com/businesstoday/images/story/202002/croma_660_210220115524.jpg"))
+                .resizable()
+                //.retry(maxCount: 2)
+                .cacheOriginalImage()
+                .placeholder {
+                   ProgressView()
                 }
+                
+                
+                
+                
+               
+                        //.scaledToFit()
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                
             }
+            
+            .padding()
         }
+  
+    }
+   
+}
+                                       
         
         struct car1:View{
             var body: some View{
@@ -562,7 +729,7 @@ struct explore:View{
                                 
                                 
                             } label: {
-                                Text("SignOut")
+                                Text("Log Out")
                                 
                                     .bold()
                                     .padding()
@@ -570,7 +737,7 @@ struct explore:View{
                                 
                                     .background(Color("borderclr"))
                                     .foregroundColor(Color("txt"))
-                                    .cornerRadius(5)
+                                    .cornerRadius(50)
                                
                             }
                             .alert(isPresented:$showalert){
@@ -582,6 +749,24 @@ struct explore:View{
                                 )
                                 
                             }
+                            Button(action: {
+                                       KingfisherManager.shared.cache.clearMemoryCache()
+                                       KingfisherManager.shared.cache.clearDiskCache {
+                                           // Optionally, handle completion if needed
+                                           print("Cache cleared.")
+                                       }
+                                   }) {
+                                       Text("Clear Cache")
+                                       
+                                           .bold()
+                                           .padding()
+                                           .frame(maxWidth:.infinity)
+                                       
+                                           .background(Color("borderclr"))
+                                           .foregroundColor(Color("txt"))
+                                           .cornerRadius(50)
+                                      
+                                   }
                           
                             
                             
@@ -679,6 +864,7 @@ struct explore:View{
                             
                             
                             TextField("email",text:$email)
+                                .autocapitalization(.none)
                                 .padding()
                             
                                 .foregroundColor(Color("borderclr"))
@@ -694,6 +880,7 @@ struct explore:View{
                             
                             
                             SecureField("password",text: $password)
+                                .autocapitalization(.none)
                                 .textCase(.lowercase)
                                 .padding()
                                 .foregroundColor(Color("borderclr"))
@@ -823,6 +1010,7 @@ struct explore:View{
                             
                             
                             TextField("email",text:$email)
+                                .autocapitalization(.none)
                             
                                 .padding()
                                 .textCase(.lowercase)
@@ -841,6 +1029,7 @@ struct explore:View{
                             
                             //TextField("password",text: $password)
                                 SecureField("password",text: $password)
+                                .autocapitalization(.none)
                                 .padding()
                                
                                 .foregroundColor(Color("borderclr"))
@@ -898,7 +1087,8 @@ struct explore:View{
                                 dismiss()
                             } label: {
                                 Image(systemName: "arrow.backward.circle")
-                                    .foregroundColor(Color("borderclr"))
+                                    .foregroundColor(Color(.red))
+                                    .bold()
                                     
                             }
 
@@ -918,14 +1108,15 @@ struct explore:View{
 
         struct ContentView_Previews: PreviewProvider {
             static var previews: some View {
-               // onboard()
+                //onboard()
                 // homeview()
                 //explore()
                 //categories().environmentObject(NetworkMonitor())
                 //environmentObject(NetworkMonitor)
-                signupview()
-               // loginview()
-                //settings()
+                //signupview()
+               //loginview()
+               // settings()
+                mountain1()
             }
         }
 
