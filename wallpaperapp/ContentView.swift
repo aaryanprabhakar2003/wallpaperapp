@@ -294,8 +294,10 @@ struct explore:View{
                                         
                                         KFImage(imageURL_mountains)
                                             .resizable()
+                                            .cacheOriginalImage()
                                             .scaledToFit()
                                             .cornerRadius(15)
+                           
                                             
                                             .overlay(
                                                 Text("MOUNTAINS")
@@ -680,6 +682,10 @@ struct mountain1:View{
         struct settings:View{
            @Environment(\.presentationMode) var presentationMode
             @State private var showalert=false
+             @StateObject var authManager = AuthManager.shared
+             @State private var deletionError: Error?
+            @State private var showalert1 = false
+            @State private var onbaordshow=false
           
            
             
@@ -715,14 +721,71 @@ struct mountain1:View{
                                     
                                     
                                 }
+                            Button(action: {
+                                KingfisherManager.shared.cache.clearMemoryCache()
+                                KingfisherManager.shared.cache.clearDiskCache {
+                                    // Optionally, handle completion if needed
+                                    print("Cache cleared.")
+                                }
+                            }) {
+                                Text("Clear Cache")
+                                    .foregroundColor(Color("borderclr"))
+                                
+                                
+                            }
+                            Button {
+                                //logoutAndCloseApp()
+                                
+                                authManager.deleteAccount{ error in
+                                    deletionError=error
+                                    if error==nil{
+                                        print("no error found")
+                                    }
+                                    
+                                    
+                                    
+                                }
+                                showalert1=true
+                                
+                                
+                            } label: {
+                                Text("Delete Account")
+                                
+                                    .foregroundColor(Color("borderclr"))
+                                
+                                
+                            }
+                            
+                             if let error = deletionError {
+                             Text(" Error: \(error.localizedDescription)")
+                             
+                             }
                            
+                            
                         }
-                       
+                        .alert(isPresented:$showalert1){
+                             Alert(title:Text("Delete Account"),
+                         message: Text("Your Account will be deleted from Firebase"),
+                                   dismissButton: .default(Text("Ok")){
+                                 navigateonbaord()
+                             }
+                             )
+                         }
+                        NavigationLink(
+                            destination:signupview(),
+                            isActive: $onbaordshow,
+                            label: {
+                                EmptyView()
+                            }
+                        )
+                        
                         VStack {
                             Spacer()
                             Button {
-                                //logoutAndCloseApp()
+                                
                                 showalert=true
+                                //logoutAndCloseApp()
+                                //onbaordshow=true
                                 
                                 
                                 
@@ -738,7 +801,7 @@ struct mountain1:View{
                                     .background(Color("borderclr"))
                                     .foregroundColor(Color("txt"))
                                     .cornerRadius(50)
-                               
+                                
                             }
                             .alert(isPresented:$showalert){
                                 Alert(title: Text("Logout"),
@@ -748,62 +811,74 @@ struct mountain1:View{
                                 },secondaryButton: .cancel()
                                 )
                                 
-                            }
-                            Button(action: {
-                                       KingfisherManager.shared.cache.clearMemoryCache()
-                                       KingfisherManager.shared.cache.clearDiskCache {
-                                           // Optionally, handle completion if needed
-                                           print("Cache cleared.")
-                                       }
-                                   }) {
-                                       Text("Clear Cache")
-                                       
-                                           .bold()
-                                           .padding()
-                                           .frame(maxWidth:.infinity)
-                                       
-                                           .background(Color("borderclr"))
-                                           .foregroundColor(Color("txt"))
-                                           .cornerRadius(50)
-                                      
-                                   }
-                          
-                            
-                            
-                           
-                          
-                        
-                        }
-                        .padding()
-                      
-                    
-                       
-                           
-
-
-                            
-                            
-                           
-                        
-                            
-
-
-                           
-                               
                                 
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        }
+                        
+                        .padding()
                         
                         
-                       
-                            
-                           
-                            
+                      
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    }
+                    
+                    
+                   
+                    
+                    
                 }
-                }
+            
+            }
+            
+             
+                
+                 
+             
             
                     
                     
                     
-                }
+                
+
+            
             func logoutAndCloseApp() {
                     do {
                         try Auth.auth().signOut()
@@ -814,6 +889,11 @@ struct mountain1:View{
                         // Handle any errors that occur during logout
                     }
                 }
+            func navigateonbaord(){
+                onbaordshow=true
+            }
+         
+           
             }
 
             
@@ -843,7 +923,7 @@ struct mountain1:View{
             @State private var errorMessage: String?
             @State private var alreadyloginview = false
             @State private var iserrorMessage = false
-            @State private var titleFontSize: CGFloat = 8.0
+       
             var body: some View{
                 ZStack{
                     NavigationStack {
@@ -977,6 +1057,8 @@ struct mountain1:View{
                             Text("Already have an account? ").bold().foregroundColor(Color("borderclr"))+Text("Login")
                                 .foregroundColor(Color.red).bold()
                         }
+                        
+                        
                     }
                     
                     
@@ -1115,8 +1197,8 @@ struct mountain1:View{
                 //environmentObject(NetworkMonitor)
                 //signupview()
                //loginview()
-               // settings()
-                mountain1()
+                settings()
+                //mountain1()
             }
         }
 

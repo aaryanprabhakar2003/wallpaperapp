@@ -22,6 +22,7 @@
 		C145D6D62AE6C40A00BD2007 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C145D6D52AE6C40A00BD2007 /* FirebaseFirestoreSwift */; };
 		C145D6D82AE6C40A00BD2007 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C145D6D72AE6C40A00BD2007 /* FirebaseStorage */; };
 		C145D6DA2AE6C46500BD2007 /* network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145D6D92AE6C46500BD2007 /* network.swift */; };
+		C16952AF2AEF736500687F97 /* firebasedelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16952AE2AEF736500687F97 /* firebasedelete.swift */; };
 		C178A2772AEA7967006E9BB8 /* teko.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C178A2762AEA7967006E9BB8 /* teko.ttf */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		C145D6C32AE6C2F800BD2007 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C145D6CA2AE6C37200BD2007 /* nointernetview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nointernetview.swift; sourceTree = "<group>"; };
 		C145D6D92AE6C46500BD2007 /* network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = network.swift; sourceTree = "<group>"; };
+		C16952AE2AEF736500687F97 /* firebasedelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firebasedelete.swift; sourceTree = "<group>"; };
 		C178A2762AEA7967006E9BB8 /* teko.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = teko.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 				C178A2762AEA7967006E9BB8 /* teko.ttf */,
 				C145D6BB2AE6C2F700BD2007 /* wallpaperappApp.swift */,
 				C145D6BD2AE6C2F700BD2007 /* ContentView.swift */,
+				C16952AE2AEF736500687F97 /* firebasedelete.swift */,
 				C126FADD2AE7FE1B00F776F2 /* Info.plist */,
 				C145D6BF2AE6C2F800BD2007 /* Assets.xcassets */,
 				C145D6D92AE6C46500BD2007 /* network.swift */,
@@ -188,6 +191,7 @@
 			files = (
 				C145D6CB2AE6C37200BD2007 /* nointernetview.swift in Sources */,
 				C145D6BE2AE6C2F700BD2007 /* ContentView.swift in Sources */,
+				C16952AF2AEF736500687F97 /* firebasedelete.swift in Sources */,
 				C145D6DA2AE6C46500BD2007 /* network.swift in Sources */,
 				C145D6BC2AE6C2F700BD2007 /* wallpaperappApp.swift in Sources */,
 			);
